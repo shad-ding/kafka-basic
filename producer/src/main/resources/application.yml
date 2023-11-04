@@ -1,0 +1,22 @@
+# 端口
+server:
+  port: 8090
+
+self:
+  connect: 192.168.11.129:9092
+  topic: demo_test
+
+# 应用名称
+spring:
+  application:
+    name: producer
+
+  kafka:
+    producer:
+      bootstrap-servers: ${self.connect}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    topic: ${self.topic}
+    listener:
+      missing-topics-fatal: false
+
